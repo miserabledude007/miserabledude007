@@ -1,0 +1,91 @@
+package Lab;
+
+class TreeNode {
+    int data;
+    TreeNode left, right;
+
+    public TreeNode(int data) {
+        this.data = data;
+        left = right = null;
+    }
+}
+
+public class TreeTraversal {
+
+    // Recursive function for pre-order traversal of a binary tree
+    public static void preOrderTraversal(TreeNode root) {
+        if (root != null) {
+            System.out.print(root.data + " "); // Process the current node
+            preOrderTraversal(root.left);     // Recursively traverse left subtree
+            preOrderTraversal(root.right);    // Recursively traverse right subtree
+        }
+    }
+
+    // Recursive function for in-order traversal of a binary tree
+    public static void inOrderTraversal(TreeNode root) {
+        if (root != null) {
+            inOrderTraversal(root.left);      // Recursively traverse left subtree
+            System.out.print(root.data + " "); // Process the current node
+            inOrderTraversal(root.right);     // Recursively traverse right subtree
+        }
+    }
+
+    // Recursive function for post-order traversal of a binary tree
+    public static void postOrderTraversal(TreeNode root) {
+        if (root != null) {
+            postOrderTraversal(root.left);    // Recursively traverse left subtree
+            postOrderTraversal(root.right);   // Recursively traverse right subtree
+            System.out.print(root.data + " "); // Process the current node
+        }
+    }
+
+    public static void main(String[] args) {
+        // Creating a sample binary tree
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+
+        // Printing pre-order traversal of the binary tree
+        System.out.print("Pre-order traversal: ");
+        preOrderTraversal(root);
+        System.out.println();
+
+        // Printing in-order traversal of the binary tree
+        System.out.print("In-order traversal: ");
+        inOrderTraversal(root);
+        System.out.println();
+
+        // Printing post-order traversal of the binary tree
+        System.out.print("Post-order traversal: ");
+        postOrderTraversal(root);
+    }
+}
+
+package Lab;
+
+import java.util.Scanner;
+
+public class Fibonacci {
+
+    public static int fibonacci(int n) {
+        if (n <= 1)
+            return n;
+        return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter the number: ");
+        int n = scanner.nextInt();
+
+        System.out.print("Fibonacci series: ");
+        for (int i = 0; i < n; i++) {
+            System.out.print(fibonacci(i) + " ");
+        }
+
+        scanner.close();
+    }
+}
