@@ -1,0 +1,69 @@
+RED-BLACK TREE IMPLEMENTATION
+
+package Lab5;
+
+class Node {
+    int data;
+    Node left, right, parent;
+    boolean isRed;
+
+    Node(int data) {
+        this.data = data;
+        left = right = parent = null;
+        isRed = true;
+    }
+}
+
+public class RedBlackTree {
+    Node root;
+
+    public RedBlackTree() {
+        root = null;
+    }
+
+    private void printTree(Node node, String indent, boolean last) {
+        if (node != null) {
+            System.out.print(indent);
+            if (last) {
+                System.out.print("R----");
+                indent += "     ";
+            } else {
+                System.out.print("L----");
+                indent += "|    ";
+            }
+
+            String color = node.isRed ? "RED" : "BLACK";
+            System.out.println(node.data + "(" + color + ")");
+            printTree(node.left, indent, false);
+            printTree(node.right, indent, true);
+        }
+    }
+
+    public void prettyPrint() {
+        printTree(root, "", true);
+    }
+
+    public static void main(String[] args) {
+        RedBlackTree tree = new RedBlackTree();
+        tree.root = new Node(10);
+        tree.root.isRed = false; // Root must be black
+        tree.root.left = new Node(5);
+        tree.root.left.parent = tree.root;
+        tree.root.left.isRed = true;
+        tree.root.right = new Node(15);
+        tree.root.right.parent = tree.root;
+        tree.root.right.isRed = true;
+        tree.root.left.left = new Node(2);
+        tree.root.left.left.parent = tree.root.left;
+        tree.root.left.left.isRed = false;
+        tree.root.left.right = new Node(7);
+        tree.root.left.right.parent = tree.root.left;
+        tree.root.left.right.isRed = false;
+        tree.root.right.right = new Node(20);
+        tree.root.right.right.parent = tree.root.right;
+        tree.root.right.right.isRed = false;
+
+        System.out.println("Red-Black Tree Structure:");
+        tree.prettyPrint();
+    }
+}
